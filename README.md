@@ -1,10 +1,12 @@
-# PulseAI — Live News Intelligence 🚀
+# Gen AI Projects Suite 🚀
 
-A comprehensive news summarization platform powered by LangChain, LanGraph, and multiple LLM providers. This project demonstrates advanced LLM orchestration patterns, chain composition, and real-time news processing with an interactive web UI.
+A comprehensive collection of AI-powered applications demonstrating advanced LangChain patterns, LLM orchestration, and intelligent tool usage. This suite includes multiple projects showcasing production-ready implementations.
 
 ## 📋 Table of Contents
 
-- [Project Overview](#project-overview)
+- [Projects Overview](#projects-overview)
+  - [PulseAI](#pulseai--live-news-intelligence)
+  - [City Agent](#city-agent--intelligent-city-information)
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Technology Stack](#technology-stack)
@@ -14,33 +16,52 @@ A comprehensive news summarization platform powered by LangChain, LanGraph, and 
 - [Component Documentation](#component-documentation)
 - [Contributing](#contributing)
 
-## 🎯 Project Overview
+## 🎯 Projects Overview
 
-PulseAI is an intelligent news summarization system that:
+### PulseAI — Live News Intelligence
+An intelligent news summarization platform that:
 - Fetches real-time news using Tavily Search API
 - Processes news articles with multiple LLM providers
 - Implements various LangChain runnable patterns
 - Provides a modern, interactive Streamlit UI
 - Demonstrates production-ready LLM chain patterns
 
+**Key Files:** `UI_News_Summarizer.py`, `newssummarizer.py`
+
+### City Agent — Intelligent City Information
+An advanced AI-powered agent system that:
+- Provides real-time weather information for any city
+- Retrieves the latest news about specific cities
+- Demonstrates sophisticated tool-calling patterns
+- Implements multi-turn agent conversations
+- Showcases LLM tool binding and execution
+- Features safety approval mechanisms for tool usage
+
+**Key Files:** `UI_City_Agent.py`, `Agents.py`, `toolcalling.py`
+
 ## ✨ Features
 
-- **Real-time News Fetching**: Integration with Tavily Search API for live news data
-- **Intelligent City Agent**: AI-powered agent that provides weather and news information
-- **Tool Calling**: LLM tool binding and execution patterns
-- **Multi-LLM Support**: 
-  - Mistral AI
-  - OpenAI
-  - Google GenAI
-  - Groq
-- **Advanced Chain Patterns**:
-  - Sequential chains
-  - Parallel processing
-  - Runnable passthrough patterns
-- **Modern Web UI**: Built with Streamlit for user-friendly interaction
-- **Vector Search**: FAISS and ChromaDB for semantic search capabilities
-- **Document Processing**: PDF parsing and web scraping with BeautifulSoup
-- **Environment Configuration**: Support for API key management via `.env` files
+### PulseAI Features
+- Real-time news fetching via Tavily Search API
+- Multi-LLM support (Mistral, OpenAI, Google GenAI, Groq)
+- Sequential and parallel chain patterns
+- Modern dark-themed Streamlit UI
+- Customizable summarization prompts
+
+### City Agent Features
+- Real-time weather data integration (OpenWeather API)
+- Dynamic news retrieval for cities
+- Sophisticated tool-calling and binding
+- Multi-turn agent conversations
+- Tool approval interface for safety
+- Beautiful gradient UI with message history
+
+### Shared Capabilities
+- Advanced chain patterns (sequential, parallel, passthrough)
+- Vector search with FAISS and ChromaDB
+- Document processing (PDF parsing, web scraping)
+- Environment-based API key management
+- Production-ready error handling
 
 ## 📁 Project Structure
 
@@ -155,35 +176,43 @@ The application uses `python-dotenv` to automatically load these variables.
 
 ## 📖 Usage
 
-### Running the Streamlit UI Applications
+### 🔥 PulseAI — News Summarizer
 
-#### News Summarizer UI
+#### Run the UI
 ```bash
 streamlit run UI_News_Summarizer.py
 ```
 
-The application will open in your browser at `http://localhost:8501`
-
 **Features:**
 - Search for news on any topic
-- Get AI-powered summaries
+- Get AI-powered summaries with bullet points
 - Customize summarization prompts
-- Dark-themed modern interface with custom styling
+- Dark-themed modern interface
+- Real-time news processing
 
-#### City Agent UI
+**Access:** `http://localhost:8501`
+
+---
+
+### 🏙️ City Agent — City Information System
+
+#### Run the UI
 ```bash
 streamlit run UI_City_Agent.py
 ```
 
-The application will open in your browser at `http://localhost:8501`
-
 **Features:**
-- Ask questions about cities
+- Ask questions about cities naturally
 - Get real-time weather information
-- Receive latest city news
+- Receive latest city news automatically
 - Interactive multi-turn conversations
 - Tool approval interface for safety
-- Beautiful gradient UI with message history
+- Beautiful gradient UI with chat history
+- Seamless tool integration
+
+**Access:** `http://localhost:8501`
+
+---
 
 ### Running Individual Components
 
@@ -231,8 +260,10 @@ python test.py
 
 ## 📚 Component Documentation
 
-### UI_News_Summarizer.py
-The main Streamlit application providing:
+### PulseAI Components
+
+#### UI_News_Summarizer.py
+The main Streamlit application for news summarization:
 - Custom CSS styling with dark theme
 - Interactive search interface
 - Real-time news processing
@@ -245,10 +276,29 @@ The main Streamlit application providing:
 - LLM chain execution
 - Results display and formatting
 
-### UI_City_Agent.py
+#### newssummarizer.py
+Core summarization logic demonstrating:
+- Integration with Tavily Search API
+- LLM chain construction
+- Output parsing
+- Tool inspection
+
+**Usage Example:**
+```python
+from newssummarizer import search_tool, chain
+
+news = search_tool.run("latest AI news")
+summary = chain.invoke({"news": news})
+```
+
+---
+
+### City Agent Components
+
+#### UI_City_Agent.py
 An intelligent city agent Streamlit application featuring:
-- Interactive chat interface
-- Multi-turn conversations
+- Interactive chat interface with gradient styling
+- Multi-turn conversations with full history
 - Tool calling with approval mechanism
 - Real-time weather and news retrieval
 - Beautiful gradient UI with message bubbles
@@ -261,7 +311,7 @@ An intelligent city agent Streamlit application featuring:
 - Message history and streaming responses
 - Responsive design with custom CSS
 
-### Agents.py
+#### Agents.py
 Core agent implementations providing:
 - **get_weather()** tool - Fetches current weather using OpenWeather API
 - **get_news()** tool - Retrieves latest news using Tavily Search
@@ -281,7 +331,7 @@ def get_news(city: str) -> str:
     # Returns latest news articles
 ```
 
-### toolcalling.py
+#### toolcalling.py
 Demonstrates LLM tool calling patterns:
 - Tool creation and binding
 - LLM-tool integration
@@ -297,50 +347,61 @@ if result.tool_calls:
     # Execute tool and continue conversation
 ```
 
-### newssummarizer.py
-Core summarization logic demonstrating:
-- Integration with Tavily Search API
-- LLM chain construction
-- Output parsing
-- Tool inspection
+---
 
-**Usage Example:**
-```python
-from newssummarizer import search_tool, chain
+### Shared Components (Used by Both Projects)
 
-news = search_tool.run("latest AI news")
-summary = chain.invoke({"news": news})
-```
+### Shared Components (Used by Both Projects)
 
-### parallelrunnables.py
+#### parallelrunnables.py
 Advanced pattern showing:
 - `RunnableParallel` for concurrent execution
 - `RunnableLambda` for custom transformations
 - Multiple chain branches
 - Different prompts on same/different data
 
-### sequencerunnable.py
+#### sequencerunnable.py
 Basic chain pattern demonstrating:
 - `ChatPromptTemplate` construction
 - Model selection
 - `StrOutputParser` for output formatting
 - Simple pipe operator chain composition
 
-### runnablepassthrough.py
+#### runnablepassthrough.py
 Pattern showing:
 - Data passthrough mechanisms
 - Intermediate data retention
 - Complex chain routing
 
-### owntool.py
+#### owntool.py
 Custom tool implementations for:
 - Domain-specific operations
 - Utility functions
 - Extended functionality
 
-## 🔧 Extending the Project
+#### test.py
+Test suite for validating:
+- Chain outputs
+- Tool functionality
+- Integration scenarios
 
-### Creating Tool-Calling Agents
+## 🔧 Extending the Projects
+
+### Extending PulseAI
+
+#### Add a News Source
+1. Create a new search tool or integrate a different news API
+2. Modify the summarization chain to handle the new format
+3. Update the UI to allow source selection
+
+#### Customize Summarization
+1. Modify the prompt in `newssummarizer.py`
+2. Add custom output parsing logic
+3. Implement topic-specific summarization strategies
+
+### Extending City Agent
+
+#### Creating Tool-Calling Agents
 Define tools using the `@tool` decorator and bind them to an LLM:
 
 ```python
@@ -364,7 +425,7 @@ if result.tool_calls:
     tool_output = my_tool.invoke(result.tool_calls[0])
 ```
 
-### Adding a New Tool to City Agent
+#### Adding a New Tool to City Agent
 1. Define a new tool function in `Agents.py`:
    ```python
    @tool
@@ -376,7 +437,14 @@ if result.tool_calls:
 
 2. Update the agent to use the new tool by binding it to the LLM
 
-### Adding a New LLM Provider
+#### Add More City Data
+1. Integrate additional APIs (population, landmarks, events, etc.)
+2. Create new tools for each data source
+3. Update the agent's tool list
+
+### Shared Extensions
+
+#### Adding a New LLM Provider
 1. Add the provider SDK to `requirements.txt`
 2. Configure API key in `.env`
 3. Import and initialize in your chain:
@@ -385,13 +453,13 @@ if result.tool_calls:
    model = ChatProvider(model="model-name")
    ```
 
-### Creating Custom Chains
+#### Creating Custom Chains
 1. Create a new Python file for your chain logic
 2. Use `ChatPromptTemplate`, model, and parser
 3. Compose using the pipe operator (`|`)
 4. Test with the provided test suite
 
-### Building Custom Tools
+#### Building Custom Tools
 Extend `owntool.py` with:
 ```python
 from langchain_community.tools import Tool
@@ -454,13 +522,13 @@ This project is provided as-is for educational and development purposes.
 
 ## 🆘 Troubleshooting
 
-### Common Issues
+### General Issues
 
 **Issue: "API key not found"**
 - Solution: Ensure `.env` file exists in project root with correct API keys
 
 **Issue: Streamlit port already in use**
-- Solution: Run on different port: `streamlit run UI_News_Summarizer.py --server.port 8502`
+- Solution: Run on different port: `streamlit run <app>.py --server.port 8502`
 
 **Issue: Import errors**
 - Solution: Ensure virtual environment is activated and dependencies installed: `pip install -r requirements.txt`
@@ -468,7 +536,17 @@ This project is provided as-is for educational and development purposes.
 **Issue: Slow responses**
 - Solution: Use faster models or reduce `max_results` in search tool
 
-**Issue: Tools not being called in City Agent**
+### PulseAI Issues
+
+**Issue: News not fetching**
+- Solution: Verify `TAVILY_API_KEY` is valid and quota hasn't been exceeded
+
+**Issue: Slow summarization**
+- Solution: Use `mistral-small-2506` model instead of larger models for faster responses
+
+### City Agent Issues
+
+**Issue: Tools not being called**
 - Solution: Ensure the LLM is properly bound with tools using `llm.bind_tools([tools])`
 
 **Issue: Weather data not fetching**
@@ -476,6 +554,9 @@ This project is provided as-is for educational and development purposes.
 
 **Issue: News not showing up**
 - Solution: Check `TAVILY_API_KEY` is valid and your Tavily quota hasn't been exceeded
+
+**Issue: Tool approval interface not showing**
+- Solution: Ensure Streamlit session state is properly initialized
 
 ## 📞 Support
 
